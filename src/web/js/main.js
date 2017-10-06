@@ -17,7 +17,7 @@ function loop() {
   else inBetween(timestamp);
 }
 
-loop();
+setInterval(loop, 1000);
 
 function commonFunction(timestamp) {
   $('#hour').text(`Godzina ${timestamp.toString()}`);
@@ -61,7 +61,7 @@ function pause(timestamp) {
 }
 
 function inBetween(timestamp) {
-  $progress.startAlarm();
+  if (!$progress.alarmInterval) $progress.startAlarm();
   $progress.find('strong').html('&#128276;');
   const nextPeriod = periods.whatIsStarting(timestamp);
   if (!!nextPeriod && nextPeriod.type == 'lesson') $('#period').text('Zaczęła się lekcja');
