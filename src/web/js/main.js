@@ -5,6 +5,12 @@ const TimeFrame = require('./timeframe');
 const periods = require('./periods');
 const lodash = require('lodash');
 
+function init() {
+  setTimeout(() => $('#backimg').fadeOut(), 1000);
+}
+
+init()
+
 function loop() {
   const timestamp = new TimeStamp();
   const schoolTime = periods.getSchoolTimeFrame(timestamp);
