@@ -36,15 +36,19 @@ function lesson(timestamp) {
   const minutesElapsed = secondsElapsed / 60;
   const minutesLeft = 45 - minutesElapsed;
 
-  let pluralModifier = '';
-  if (minutesLeft % 10 > 1 && minutesLeft % 10 < 5) pluralModifier = 'y';
-  if (minutesLeft == 1) pluralModifier = 'a';
   $progress.circleProgress('value', minutesElapsed/45);
 
-  $progress.find('strong').text(`${minutesLeft} minut${pluralModifier}`);
+  $progress.find('strong').text(`${minutesLeft} ${plural('minut', minutesLeft)}`);
 
   const next = periods.getNextPeriod(timestamp);
   $('#period').text(`Następna przerwa jest ${next.getDurationInMinutes()} minutowa`);
+}
+
+function plural(noun, number) {
+  if (number > 4 && number < 22) return noun;
+  if (number % 10 > 1 && number % 10 < 5) return noun + 'y';
+  if (number == 1) return noun + 'a';
+  return noun;
 }
 
 function pause(timestamp) {
@@ -60,8 +64,8 @@ function pause(timestamp) {
   
   $progress.circleProgress('value', minutesElapsed/currentPause.getDurationInMinutes());
 
-  $progress.find('strong').text(`${minutesLeft} minut${pluralModifier}`);
-
+  $progress.find('strong').text(`${minutesLeft} ${plural('minut', minutesLeft)}`);
+  
   const next = periods.getNextPeriod(timestamp);
   $('#period').html('Szczęśliwi czasu nie liczą &#128521;');
 }
