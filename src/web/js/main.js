@@ -37,7 +37,7 @@ function lesson(timestamp) {
   const minutesLeft = 45 - minutesElapsed;
 
   let pluralModifier = '';
-  if (minutesLeft > 1 && minutesLeft < 5) pluralModifier = 'y';
+  if (minutesLeft % 10 > 1 && minutesLeft % 10 < 5) pluralModifier = 'y';
   if (minutesLeft == 1) pluralModifier = 'a';
   $progress.circleProgress('value', minutesElapsed/45);
 
