@@ -30,18 +30,7 @@ function commonFunction(timestamp) {
 }
 
 function lesson(timestamp) {
-  $progress.stopAlarm();
-  const currentLesson = periods.getCurrentPeriod(timestamp);
-
-  const secondsElapsed = timestamp - currentLesson.start;
-  const minutesElapsed = secondsElapsed / 60;
-  const duration = currentLesson.getDurationInMinutes();
-  const minutesLeft = duration - minutesElapsed;
-
-  $progress.circleProgress('value', minutesElapsed/duration);
-
-  $progress.find('strong').text(`${minutesLeft} ${plural('minut', minutesLeft)}`);
-
+  schoolPeriod(timestamp);
   const next = periods.getNextPeriod(timestamp);
   $('#period').text(`Następna przerwa jest ${next.getDurationInMinutes()} minutowa`);
 }
@@ -54,22 +43,24 @@ function plural(noun, number) {
 }
 
 function pause(timestamp) {
-  $progress.stopAlarm();
-  const currentPause = periods.getCurrentPeriod(timestamp);
-  const secondsElapsed = timestamp - currentPause.start;
-  const minutesElapsed = secondsElapsed / 60;
-  const minutesLeft = currentPause.getDurationInMinutes() - minutesElapsed;
-
-  let pluralModifier = '';
-  if (minutesLeft > 1 && minutesLeft < 5) pluralModifier = 'y';
-  if (minutesLeft == 1) pluralModifier = 'a';
-  
-  $progress.circleProgress('value', minutesElapsed/currentPause.getDurationInMinutes());
-
-  $progress.find('strong').text(`${minutesLeft} ${plural('minut', minutesLeft)}`);
+  schoolPeriod(timestamp);
   
   const next = periods.getNextPeriod(timestamp);
   $('#period').html('Szczęśliwi czasu nie liczą &#128521;');
+}
+
+function schoolPeriod(timestamp) {
+  $progress.stopAlarm();
+
+  const currentPeriod = periods.getCurrentPeriod(timestamp);
+  const secondsElapsed = timestamp - currentPeriod.start;
+  const minutesElapsed = secondsElapsed / 60;
+  const duration = currentPeriod.getDurationInMinutes();
+  const minutesLeft = duration - minutesElapsed;
+
+  $progress.circleProgress('value', minutesElapsed/duration);
+
+  $progress.find('strong').text(`${minutesLeft} ${plural('minut', minutesLeft)}`);
 }
 
 function inBetween(timestamp) {
