@@ -30,13 +30,15 @@ function commonFunction(timestamp) {
 }
 
 function lesson(timestamp) {
+  $progress.stopAlarm();
   const currentLesson = periods.getCurrentPeriod(timestamp);
 
   const secondsElapsed = timestamp - currentLesson.start;
   const minutesElapsed = secondsElapsed / 60;
-  const minutesLeft = 45 - minutesElapsed;
+  const duration = currentLesson.getDurationInMinutes();
+  const minutesLeft = duration - minutesElapsed;
 
-  $progress.circleProgress('value', minutesElapsed/45);
+  $progress.circleProgress('value', minutesElapsed/duration);
 
   $progress.find('strong').text(`${minutesLeft} ${plural('minut', minutesLeft)}`);
 
