@@ -85,3 +85,4 @@ function afterSchool(timestamp) {
   $progress.circleProgress('value', 1);
   $('#period').text('Czas odpocząć');
 }
+
