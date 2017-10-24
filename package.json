@@ -29,6 +29,7 @@
     "jquery": "^3.2.1",
     "jquery-circle-progress": "^1.2.2",
     "lodash": "^4.17.4",
-    "popper.js": "^1.12.5"
+    "popper.js": "^1.12.5",
+    "screenfull": "^3.3.1"
   }
 }

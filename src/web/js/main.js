@@ -7,6 +7,8 @@ const lodash = require('lodash');
 
 function init() {
   setTimeout(() => $('#backimg').fadeOut(), 1000);
+  serviceWorkerRegistration();
+
 }
 
 init()
@@ -15,7 +17,7 @@ function loop() {
   const timestamp = new TimeStamp();
   const schoolTime = periods.getSchoolTimeFrame(timestamp);
   commonFunction(timestamp);
-  
+
   if (timestamp < schoolTime.start) beforeSchool(timestamp);
   else if (timestamp > schoolTime.end) afterSchool(timestamp);
   else if (periods.isDuringLesson(timestamp)) lesson(timestamp);
@@ -58,9 +60,22 @@ function schoolPeriod(timestamp) {
   const duration = currentPeriod.getDurationInMinutes();
   const minutesLeft = duration - minutesElapsed;
 
+<<<<<<< HEAD
   $progress.circleProgress('value', minutesElapsed/duration);
 
   $progress.find('strong').text(`${minutesLeft} ${plural('minut', minutesLeft)}`);
+=======
+  let pluralModifier = '';
+  if (minutesLeft > 1 && minutesLeft < 5) pluralModifier = 'y';
+  if (minutesLeft == 1) pluralModifier = 'a';
+
+  $progress.circleProgress('value', minutesElapsed/currentPause.getDurationInMinutes());
+
+  $progress.find('strong').text(`${minutesLeft} ${plural('minut', minutesLeft)}`);
+
+  const next = periods.getNextPeriod(timestamp);
+  $('#period').html('Szczęśliwi czasu nie liczą &#128521;');
+>>>>>>> serviceworker
 }
 
 function inBetween(timestamp) {
@@ -70,10 +85,10 @@ function inBetween(timestamp) {
   if (!!nextPeriod && nextPeriod.type == 'lesson') $('#period').text('Zaczęła się lekcja');
   if (!!nextPeriod && nextPeriod.type == 'pause') $('#period').text(`Zaczęła się przerwa ${nextPeriod.getDurationInMinutes()} minutowa`);
   if (!nextPeriod) $('#period').text('Koniec zajęć na dziś');
-} 
+}
 
 function beforeSchool(timestamp) {
-  $progress.stopAlarm(); 
+  $progress.stopAlarm();
   $progress.find('strong').html('&#128564;');
   $progress.circleProgress('value', 1);
   $('#period').text('Wyśpij się przed szkołą');
@@ -86,3 +101,20 @@ function afterSchool(timestamp) {
   $('#period').text('Czas odpocząć');
 }
 
+<<<<<<< HEAD
+=======
+function serviceWorkerRegistration() {
+
+if (!('serviceWorker' in navigator)){
+console.log('not supported');
+return;}
+
+navigator.serviceWorker.register(
+    '/service-worker.js',
+
+).then(function(registration) {
+    console.log('SW registered! Scope is:',
+    registration.scope);
+});
+}
+>>>>>>> serviceworker
