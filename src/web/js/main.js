@@ -60,11 +60,10 @@ function schoolPeriod(timestamp) {
   const duration = currentPeriod.getDurationInMinutes();
   const minutesLeft = duration - minutesElapsed;
 
-<<<<<<< HEAD
   $progress.circleProgress('value', minutesElapsed/duration);
 
   $progress.find('strong').text(`${minutesLeft} ${plural('minut', minutesLeft)}`);
-=======
+
   let pluralModifier = '';
   if (minutesLeft > 1 && minutesLeft < 5) pluralModifier = 'y';
   if (minutesLeft == 1) pluralModifier = 'a';
@@ -75,7 +74,7 @@ function schoolPeriod(timestamp) {
 
   const next = periods.getNextPeriod(timestamp);
   $('#period').html('Szczęśliwi czasu nie liczą &#128521;');
->>>>>>> serviceworker
+
 }
 
 function inBetween(timestamp) {
@@ -101,8 +100,7 @@ function afterSchool(timestamp) {
   $('#period').text('Czas odpocząć');
 }
 
-<<<<<<< HEAD
-=======
+
 function serviceWorkerRegistration() {
 
 if (!('serviceWorker' in navigator)){
