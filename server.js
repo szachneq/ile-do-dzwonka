@@ -9,6 +9,11 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/all', (req, res) => {
+  console.log('tekst!!!!!');
+  res.sendFile(__dirname + '/all.html');
+});
+
 app.get('/service-worker.js', (req, res) => {
   res.sendFile(__dirname + '/service-worker.js');
 });
