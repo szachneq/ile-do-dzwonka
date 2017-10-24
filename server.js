@@ -10,7 +10,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/all', (req, res) => {
-  console.log('tekst!!!!!');
   res.sendFile(__dirname + '/all.html');
 });
 
