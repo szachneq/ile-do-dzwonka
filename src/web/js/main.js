@@ -46,7 +46,7 @@ function plural(noun, number) {
 
 function pause(timestamp) {
   schoolPeriod(timestamp);
-  
+
   const next = periods.getNextPeriod(timestamp);
   $('#period').html('Szczęśliwi czasu nie liczą &#128521;');
 }
@@ -117,4 +117,3 @@ navigator.serviceWorker.register(
     registration.scope);
 });
 }
->>>>>>> serviceworker
