@@ -13,4 +13,8 @@ app.get('/service-worker.js', (req, res) => {
   res.sendFile(__dirname + '/service-worker.js');
 });
 
+app.get('/manifest.json', (req, res) => {
+  res.sendFile(__dirname + '/manifest.json');
+});
+
 app.listen(process.env.PORT || 3000);
