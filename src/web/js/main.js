@@ -8,6 +8,7 @@ const lodash = require('lodash');
 function init() {
   setTimeout(() => $('#backimg').fadeOut(), 1000);
   serviceWorkerRegistration();
+
 }
 
 init()
@@ -109,5 +110,4 @@ navigator.serviceWorker.register(
     console.log('SW registered! Scope is:',
     registration.scope);
 });
-
 }
