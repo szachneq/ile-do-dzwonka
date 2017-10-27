@@ -64,9 +64,10 @@ function schoolPeriod(timestamp) {
 
   $progress.find('strong').text(`${minutesLeft} ${plural('minut', minutesLeft)}`);
 
-  let pluralModifier = '';
-  if (minutesLeft > 1 && minutesLeft < 5) pluralModifier = 'y';
-  if (minutesLeft == 1) pluralModifier = 'a';
+// function pluralModifier() { //not implemented anywhere
+//   let pluralModifier = '';
+//   if (minutesLeft > 1 && minutesLeft < 5) pluralModifier = 'y';
+//   if (minutesLeft == 1) pluralModifier = 'a'; }
 
   $progress.circleProgress('value', minutesElapsed/currentPause.getDurationInMinutes());
 
