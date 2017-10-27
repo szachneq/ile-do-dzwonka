@@ -1,16 +1,17 @@
 const gulp = require('gulp');
 
+const browserSync = require('browser-sync');
+const reload = browserSync.reload;
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const browserify = require('browserify');
 const uglify = require('gulp-uglify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
-const browserSync = require('browser-sync');
-const reload = browserSync.reload;
 const notify = require('gulp-notify');
 const rename = require('gulp-rename');
 const sourcemaps = require('gulp-sourcemaps');
+const swPrecache = require('sw-precache') ;
 
 const htmlSource = '*.html';
 const imgSource = 'src/web/img/*.*';
