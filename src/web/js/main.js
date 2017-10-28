@@ -8,7 +8,7 @@ const lodash = require('lodash');
 function init() {
   setTimeout(() => $('#backimg').fadeOut(), 1000);
   serviceWorkerRegistration();
-
+  console.log('zbudowano pomyslnie');
 }
 
 init()
