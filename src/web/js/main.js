@@ -34,7 +34,10 @@ function commonFunction(timestamp) {
 function lesson(timestamp) {
   schoolPeriod(timestamp);
   const next = periods.getNextPeriod(timestamp);
-  $('#period').text(`Następna przerwa jest ${next.getDurationInMinutes()} minutowa`);
+  if (next.getDurationInMinutes()) {
+    const nextDuration = next.getDurationInMinutes() || null;
+    $('#period').html(`Następna przerwa jest ${nextDuration} minutowa`); 
+  }
 }
 
 function plural(noun, number) {
@@ -68,12 +71,9 @@ function schoolPeriod(timestamp) {
   if (minutesLeft > 1 && minutesLeft < 5) pluralModifier = 'y';
   if (minutesLeft == 1) pluralModifier = 'a';
 
-  $progress.circleProgress('value', minutesElapsed/currentPause.getDurationInMinutes());
+  $progress.circleProgress('value', minutesElapsed/currentPeriod.getDurationInMinutes());
 
   $progress.find('strong').text(`${minutesLeft} ${plural('minut', minutesLeft)}`);
-
-  const next = periods.getNextPeriod(timestamp);
-  $('#period').html('Szczęśliwi czasu nie liczą &#128521;');
 
 }
 
