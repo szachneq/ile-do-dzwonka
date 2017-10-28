@@ -77,3 +77,5 @@ gulp.task('default', ['html', 'images', 'styles', 'scripts', 'browser-sync'], ()
 	gulp.watch(jsSource + '/*.js', ['scripts']);
 	gulp.watch(imgSource, ['images']);
 });
+
+gulp.task('heroku', ['html', 'images', 'styles', 'scripts',]);
